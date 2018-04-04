@@ -39,6 +39,6 @@ app.all('*', function(req, res, next) {
 
 app.use(api);
 //db.openDB();
-// 监听8088端口
+// 监听8089端口
 app.listen(8089);
 console.log('success listen…………', 8089);

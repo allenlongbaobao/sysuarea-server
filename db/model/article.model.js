@@ -4,7 +4,7 @@ const Schema = Mongoose.Schema;
 let article = {
 	owner: {
 	  uid: Schema.Types.ObjectId, // 用户ID
-	  name: String
+	  nickName: String
 	},
 	content: String,
 	title: String,

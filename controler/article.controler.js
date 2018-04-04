@@ -19,7 +19,7 @@ let addArticle = function (req, res) {
   body.love = 0
   body.owner = {
     uid: req.session.user._id,
-    name: req.session.user.name
+    nickName: req.session.user.nickName
   }
   //body.publishAt = date.toLocaleString('zn-CN', {hour12: false, timeZone: 'UTC', timeZoneName: 'short'})
   //body.publishAt = (new Date()).toLocaleString('zh-CN', { hour12: false })

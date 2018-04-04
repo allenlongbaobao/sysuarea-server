@@ -12,7 +12,7 @@ Mongoose.Promise = promise
 let getCurrentUserInfo = function (req, res) {
   let user = req.session.user
   if (user) {
-    user = _.omit(user, ['_id', '__v', 'pass', 'wx_token', 'wb_token'])
+    user = _.omit(user, ['_id', '__v', 'pass', 'wx_token', 'wb_token', 'createdAt'])
     res.status(200).send({
       code: 1,
       data: user
@@ -62,7 +62,7 @@ let checkEmailExisted = function (req, res) {
 
 let signUp = function (req, res) {
   let default_info = {
-    trueName: '',
+    trueName: '未填写',
     birthday: "1980-01-01",
     school: {
       //sid: '',
