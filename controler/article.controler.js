@@ -13,7 +13,7 @@ let addArticle = function (req, res) {
   console.log(req.session.user)
   let body = req.body
   body._id = Mongoose.Types.ObjectId()
-  let date = new Date()
+  let date = new Date().toLocaleString('cn')
   body.createdAt = date
   body.view = 0
   body.love = 0
@@ -73,7 +73,21 @@ let getPublishArticleNum = function (req, res) {
   })
 }
 
-// 获取所有文章
+// 获取所有文章，根据用户 id
+
+let getAllArticleByUid = function (req, res) {
+  modelArticle.find({'owner.uid': req.body.id}).sort({createdAt: -1}).then(data => {
+    res.jsonp({
+      data: data
+    })
+  }).catch(err => {
+    console.log(err)
+    res.status(400).send({
+      message: 'get all article by uid fail'
+    })
+  })
+}
+
 let getAllArticle = function (req, res) {
 	modelArticle.find().sort({_id: -1}).then(data => {
     res.jsonp({
@@ -138,6 +152,7 @@ let removeArticle = function (req, res) {
 }
 
 module.exports = {
+  getAllArticleByUid: getAllArticleByUid,
   getPublishArticleNum: getPublishArticleNum,
 	getAllArticle: getAllArticle,
 	getArticleById: getArticleById,
